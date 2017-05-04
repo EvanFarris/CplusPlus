@@ -1,0 +1,42 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+#ifndef STUDENT_H
+#define STUDENT_H
+// Student class declaration --> specification file
+class Student {
+private:
+	string name;
+	int midTerm;
+	int final;
+	static int numObj; //static data sharedc by all objects
+public:
+	// constructor
+	Student();  // default constructor
+	Student(string, int, int);  // parameterized constructor
+	Student(const Student&); //copy constructor
+	// destructor
+	~Student();
+	// mutators (aka setters)
+	void setName(string n);
+	void setMidTerm(int mt);
+	void setFinal(int fnl);
+	// accessors (aka getters) declared inline
+	string getName() const { return name; }
+	int getMidTerm() const { return midTerm; }
+	int getFinal() const { return final; }
+	// behavior (general access/calculation functions)
+	int getTotalPoints() const;
+	float getAverage() const;
+	//static method to return all created objects
+	static int getNumObjs();
+	//grant friendship to funtion
+	friend void displayStudentData(Student);
+	//grant freindship to operator
+	friend ostream& operator << (ostream &lhs, const Student &rhs);
+	//overloaded assignment as member function
+	Student& operator = (const Student &rhs);
+};
+
+#endif
